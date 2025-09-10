@@ -17,27 +17,24 @@ const MobileNav = ({ closeNav, showNav }: Props) => {
 
     return (
         <>
-            {/* Overlay */}
             <div
                 className={`fixed inset-0 ${navOpen} transform transition-all right-0 duration-500 z-[100002] bg-black opacity-70 w-full h-screen`}
                 onClick={closeNav}
             />
-
-            {/* Sidebar */}
             <div
-                className={`text-white fixed ${navOpen} justify-center flex flex-col h-full transform transition-all duration-500 delay-300 w-[80%] sm:w-[60%] bg-green-700 space-y-6 z-[100050] right-0`}
+                className={`text-white fixed ${navOpen} justify-center flex flex-col h-full transform transition-all duration-500 delay-300 w-[80%] sm:w-[60%] bg-red-700 space-y-6 z-[100050] right-0`}
             >
                 {NavLinks.map((link) => {
                     const isActive = pathname === link.url;
                     return (
                         <Link key={link.id} href={link.url} onClick={closeNav}>
                             <p
-                                className={`relative w-fit ml-12 pb-1 text-xl sm:text-[30px] transition-colors duration-200 ${isActive ? 'text-green-400' : 'text-white hover:text-green-200'
+                                className={`relative w-fit ml-12 pb-1 text-xl sm:text-[30px] transition-colors duration-200 ${isActive ? 'text-white' : 'text-white hover:text-red-200'
                                     }`}
                             >
                                 {link.label}
                                 <span
-                                    className={`absolute left-0 -bottom-1 h-[2px] w-full origin-left transform bg-green-400 transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                                    className={`absolute left-0 -bottom-1 h-[2px] w-full origin-left transform bg-white transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                                         }`}
                                 />
                             </p>
