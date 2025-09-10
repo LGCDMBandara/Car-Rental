@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import ResponsiveNav from "@/components/Helpers/Navbar/ResponsiveNav";
+import Footer from "@/components/Helpers/Footer/Footer";
 
 const poppins = Poppins({
   weight: ['100','200','300','400', '500', '600', '700'], 
@@ -24,6 +25,7 @@ export default function RootLayout({
        <body className={`${poppins.className} bg-gray-50`}>
         <ResponsiveNav />
         {children}
+        <Footer />
       </body>
     </html>
   );
