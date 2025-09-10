@@ -74,7 +74,6 @@ const Nav = ({ openNav }: Props) => {
                             )}
                         </div>
                     )}
-
                     <CgMenuRightAlt className="w-8 h-8 cursor-pointer text-black lg:hidden" onClick={openNav} />
                 </div>
             </div>
