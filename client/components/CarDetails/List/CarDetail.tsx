@@ -63,21 +63,22 @@ export default function CarDetails({ carId }: CarDetailsProps) {
     };
 
     return (
-        <div className="container mx-auto px-20 pt-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-20 pt-6 sm:pt-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
                 <div>
                     <img
                         src={selectedImage}
                         alt={car.title}
-                        className="w-full h-100 object-cover rounded-lg shadow-lg mb-4"
+                        className="w-full h-64 sm:h-80 lg:h-[400px] object-cover rounded-lg shadow-lg mb-4"
                     />
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-3 gap-2 sm:gap-4">
                         {car.images.map((imgUrl, index) => (
                             <img
                                 key={index}
                                 src={imgUrl}
                                 alt={`${car.title} thumbnail ${index + 1}`}
-                                className={`w-full h-40 object-cover rounded-md cursor-pointer border-2 ${selectedImage === imgUrl ? 'border-red-500' : 'border-transparent'}`}
+                                className={`w-full h-24 sm:h-32 md:h-40 object-cover rounded-md cursor-pointer border-2 ${selectedImage === imgUrl ? "border-red-500" : "border-transparent"
+                                    }`}
                                 onClick={() => setSelectedImage(imgUrl)}
                             />
                         ))}
@@ -85,17 +86,15 @@ export default function CarDetails({ carId }: CarDetailsProps) {
                 </div>
 
                 <div>
-                    <h1 className="text-5xl font-bold mb-5">{car.title}</h1>
-                    <p className="text-xl text-gray-700">
-                        Starting at
-                    </p>
-                    <span className="font-bold text-2xl">${car.price}/Per Day</span>
-                    <p className="text-gray-600 mt-4">{car.description}</p>
+                    <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-5">{car.title}</h1>
+                    <p className="text-base sm:text-lg text-gray-700">Starting at</p>
+                    <span className="font-bold text-lg sm:text-xl lg:text-2xl">${car.price}/Per Day</span>
+                    <p className="text-gray-600 mt-4 text-sm sm:text-base">{car.description}</p>
 
                     <div className="flex items-center mt-6">
                         <button
                             onClick={handleBooking}
-                            className="bg-red-600 cursor-pointer text-white font-bold py-3 px-15 rounded-full hover:bg-red-700 transition duration-300"
+                            className="bg-red-600 cursor-pointer text-white font-bold py-2 sm:py-3 px-6 sm:px-10 rounded-full hover:bg-red-700 transition duration-300 w-full sm:w-auto"
                         >
                             Book Now
                         </button>
@@ -103,7 +102,7 @@ export default function CarDetails({ carId }: CarDetailsProps) {
 
                     <div className="mt-8 border-t border-red-200 pt-6">
                         <h3 className="text-lg font-semibold mb-4">SPECIFICATIONS</h3>
-                        <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
                             {car.specifications.map((spec, index) => (
                                 <div key={index} className="flex items-center text-gray-700">
                                     <LoaderPinwheel className="text-red-500 mr-2" />
@@ -115,17 +114,19 @@ export default function CarDetails({ carId }: CarDetailsProps) {
                 </div>
             </div>
 
-            <div className="mt-16 border-t border-red-200 pt-10">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="mt-12 lg:mt-16 border-t border-red-200 pt-8 lg:pt-10">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                     <div className="md:col-span-1">
-                        <h2 className="text-5xl font-semibold mb-4 md:mb-8 md:text-left text-center">Car Features</h2>
+                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold mb-4 md:mb-8 text-center md:text-left">
+                            Car Features
+                        </h2>
                     </div>
                     <div className="md:col-span-2">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
                             {car.features.map((feature, index) => (
-                                <div key={index} className="bg-gray-100 p-6 rounded-lg">
-                                    <h3 className="font-bold text-xl mb-2">{feature.title}</h3>
-                                    <p className="text-gray-600">{feature.description}</p>
+                                <div key={index} className="bg-gray-100 p-4 sm:p-6 rounded-lg">
+                                    <h3 className="font-bold text-lg sm:text-xl mb-2">{feature.title}</h3>
+                                    <p className="text-gray-600 text-sm sm:text-base">{feature.description}</p>
                                 </div>
                             ))}
                         </div>
@@ -133,5 +134,6 @@ export default function CarDetails({ carId }: CarDetailsProps) {
                 </div>
             </div>
         </div>
+
     );
 }
