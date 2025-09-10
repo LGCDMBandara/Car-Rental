@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { NavLinks } from '@/constant/constant';
 import Link from 'next/link';
@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Logo from '../../../public/Logo.png';
 import { CgMenuRightAlt, CgProfile } from 'react-icons/cg';
 import { SlLogin } from 'react-icons/sl';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 
 type Props = {
@@ -17,13 +17,22 @@ type Props = {
 const Nav = ({ openNav }: Props) => {
     const [navBg, setNavBg] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false);
     const pathname = usePathname();
+    const router = useRouter();
 
     useEffect(() => {
         const handleScroll = () => setNavBg(window.scrollY >= 90);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem('user'); 
+        setIsLoggedIn(false);
+        setShowDropdown(false);
+        router.push('/');
+    };
 
     return (
         <div
@@ -62,14 +71,32 @@ const Nav = ({ openNav }: Props) => {
                     })}
                 </div>
 
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2 relative">
                     {!isLoggedIn ? (
-                        <button className="px-3 py-3 sm:px-4 sm:py-3 text-sm cursor-pointer rounded-full border-2 border-red-500 bg-red-500 text-white hover:border-red-700 hover:bg-red-700 transition-all duration-300 flex items-center justify-center sm:space-x-2">
+                        <button
+                            onClick={() => router.push('/login')}
+                            className="px-3 py-3 sm:px-4 sm:py-3 text-sm cursor-pointer rounded-full border-2 border-red-500 bg-red-500 text-white hover:border-red-700 hover:bg-red-700 transition-all duration-300 flex items-center justify-center sm:space-x-2"
+                        >
                             <SlLogin className="w-5 h-5" />
                             <span className="hidden sm:inline">Sign In</span>
                         </button>
                     ) : (
-                        <CgProfile className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer text-green-600" />
+                        <div className="relative">
+                            <CgProfile
+                                className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer text-red-500 hover:text-red-700"
+                                onClick={() => setShowDropdown(!showDropdown)}
+                            />
+                            {showDropdown && (
+                                <div className="absolute right-0 mt-2 w-40 bg-white shadow-md rounded-md py-2 z-50">
+                                    <button
+                                        onClick={handleLogout}
+                                        className="w-full text-left px-4 py-2 hover:bg-red-100 text-red-600"
+                                    >
+                                        Logout
+                                    </button>
+                                </div>
+                            )}
+                        </div>
                     )}
 
                     <CgMenuRightAlt
