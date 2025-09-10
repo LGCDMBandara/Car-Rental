@@ -2,8 +2,15 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const Hero = () => {
+    const router = useRouter();
+
+    const handleGetStarted = () => {
+        router.push("/cars");
+    };
+
     return (
         <div className="relative w-full bg-gradient-to-r from-red-50 via-red-100 to-red-50 py-16 px-6 sm:px-10 md:px-16 lg:px-20 flex flex-col lg:flex-row items-center justify-between overflow-hidden pt-28 lg:pt-38">
 
@@ -28,7 +35,10 @@ const Hero = () => {
                 </p>
 
                 <div className="flex justify-center lg:justify-start gap-4">
-                    <button className="cursor-pointer px-6 sm:px-8 md:px-10 py-2 sm:py-3 bg-red-500 text-white rounded-full shadow-lg hover:shadow-xl hover:bg-red-600 transition duration-300 mt-4 sm:mt-5">
+                    <button
+                        onClick={handleGetStarted}
+                        className="cursor-pointer px-6 sm:px-8 md:px-10 py-2 sm:py-3 bg-red-500 text-white rounded-full shadow-lg hover:shadow-xl hover:bg-red-600 transition duration-300 mt-4 sm:mt-5"
+                    >
                         Get Started
                     </button>
                 </div>
