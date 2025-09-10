@@ -3,11 +3,13 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import ResponsiveNav from "@/components/Helpers/Navbar/ResponsiveNav";
 import Footer from "@/components/Helpers/Footer/Footer";
+import ReduxProvider from "@/redux/provider";
+
 
 const poppins = Poppins({
-  weight: ['100','200','300','400', '500', '600', '700'], 
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
   subsets: ['latin'],
-  display: 'swap', 
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -22,10 +24,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-       <body className={`${poppins.className} bg-gray-50`}>
-        <ResponsiveNav />
-        {children}
-        <Footer />
+      <body className={`${poppins.className} bg-gray-50`}>
+        <ReduxProvider>
+          <ResponsiveNav />
+          {children}
+          <Footer />
+        </ReduxProvider>
       </body>
     </html>
   );

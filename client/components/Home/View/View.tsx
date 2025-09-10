@@ -1,12 +1,28 @@
 "use client";
-import React from "react";
+
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { CarList } from '../../../constant/constant';
+import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../redux/store";
+import { fetchCars } from "../../../redux/slices/carsSlice";
 
 const View = () => {
+    const router = useRouter();
+    const dispatch = useDispatch<AppDispatch>();
+    const { cars, loading } = useSelector((state: RootState) => state.cars);
+
+    useEffect(() => {
+        if (cars.length === 0) {
+            dispatch(fetchCars());
+        }
+    }, [dispatch, cars.length]);
+
+    if (loading) return <p className="text-center mt-10">Loading cars...</p>;
+
     return (
         <div className="pt-10 md:pt-30">
             <h1 className="text-center text-3xl md:text-5xl xl:text-6xl font-semibold text-black">
@@ -20,13 +36,11 @@ const View = () => {
                     spaceBetween={20}
                     slidesPerView={1.2}
                     pagination={{ clickable: true }}
-                    breakpoints={{
-                        640: { slidesPerView: 2 },
-                    }}
+                    breakpoints={{ 640: { slidesPerView: 2 } }}
                     className="rounded-xl"
                 >
-                    {CarList.map((item, index) => (
-                        <SwiperSlide key={index} className="rounded-xl">
+                    {cars.map((item) => (
+                        <SwiperSlide key={item.id} className="rounded-xl">
                             <div className="bg-white rounded-xl shadow-md overflow-hidden text-center p-3">
                                 <img
                                     src={item.img}
@@ -34,14 +48,15 @@ const View = () => {
                                     className="w-full h-56 md:h-86 object-cover rounded-xl"
                                 />
                                 <div className="p-4">
-                                    <h3 className="text-lg font-semibold text-gray-800">
-                                        {item.title}
-                                    </h3>
+                                    <h3 className="text-lg font-semibold text-gray-800">{item.title}</h3>
                                     <p className="text-sm text-center text-gray-500 mt-5">Starting at</p>
                                     <h3 className="text-3xl font-semibold text-gray-800 text-center mt-2">
-                                        {item.price}
+                                        ${item.price}/Per Day
                                     </h3>
-                                    <button className="px-10 py-3 sm:px-4 sm:py-3 mx-auto text-sm cursor-pointer rounded-full border-2 border-red-500 bg-red-500 text-white hover:border-red-700 hover:bg-red-700 transition-all duration-300 flex items-center justify-center sm:space-x-2 mt-5">
+                                    <button
+                                        onClick={() => router.push(`/cars/${item.id}`)}
+                                        className="px-10 py-3 mx-auto text-sm rounded-full border-2 border-red-500 bg-red-500 text-white hover:border-red-700 hover:bg-red-700 transition-all cursor-pointer duration-300 mt-5"
+                                    >
                                         View Details
                                     </button>
                                 </div>
@@ -52,31 +67,26 @@ const View = () => {
             </div>
 
             <div className="hidden lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 px-5 xl:px-50">
-                {CarList.map((item, index) => (
+                {cars.map((item) => (
                     <div
-                        key={index}
+                        key={item.id}
                         className="bg-white rounded-xl shadow-md overflow-hidden cursor-pointer text-center p-5 hover:bg-gray-200"
                     >
-                        <img
-                            src={item.img}
-                            alt={item.title}
-                            className="w-full h-50 object-cover"
-                        />
-                        <h3 className="text-2xl font-semibold text-gray-800 text-left mt-5">
-                            {item.title}
-                        </h3>
+                        <img src={item.img} alt={item.title} className="w-full h-50 object-cover" />
+                        <h3 className="text-2xl font-semibold text-gray-800 text-left mt-5">{item.title}</h3>
                         <p className="text-lg text-left text-gray-500 mt-10">Starting at</p>
                         <div className="flex justify-between">
-                            <h3 className="text-2xl font-semibold text-gray-800 text-left">
-                                {item.price}
-                            </h3>
-                            <button className="px-5 py-3 sm:px-4 sm:py-3 text-sm cursor-pointer rounded-full border-2 border-red-500 bg-red-500 text-white hover:border-red-700 hover:bg-red-700 transition-all duration-300 flex items-center justify-center sm:space-x-2">
+                            <h3 className="text-2xl font-semibold text-gray-800 text-left">${item.price}/Per Day</h3>
+                            <button
+                                onClick={() => router.push(`/cars/${item.id}`)}
+                                className="px-5 py-3 text-sm rounded-full border-2 border-red-500 bg-red-500 text-white hover:border-red-700 hover:bg-red-700 transition-all duration-300 cursor-pointer"
+                            >
                                 View Details
                             </button>
                         </div>
                     </div>
                 ))}
-            </div>
+            </div>  
         </div>
     );
 };
