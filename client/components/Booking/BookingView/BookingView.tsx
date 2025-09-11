@@ -28,7 +28,7 @@ const BookingView: React.FC = () => {
       if (user) {
         try {
           const token = await user.getIdToken();
-          const res = await fetch("http://localhost:5000/api/bookings", {
+          const res = await fetch("http://car-rental-backend-production-ceab.up.railway.app/api/bookings", {
             headers: { Authorization: `Bearer ${token}` },
           });
 
