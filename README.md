@@ -98,6 +98,6 @@ Data Models:
 
 ---
 ## Submission Deliverables
-- GitHub repository link (code with README file ) -  
-- Live deployed app link -    
+- GitHub repository link (code with README file ) - https://github.com/LGCDMBandara/Car-Rental.git
+- Live deployed app link - https://car-rental-chi-seven.vercel.app/    
 - Example seed data (cars JSON or Firestore seed)
