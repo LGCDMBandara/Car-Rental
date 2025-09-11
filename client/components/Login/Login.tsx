@@ -22,17 +22,17 @@ const firebaseConfig = {
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth(app);
 
-const LoginRegister = () => {
+const LoginRegister: React.FC = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const [isLogin, setIsLogin] = useState(true);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+  const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const handleAuthAction = async (e: React.FormEvent) => {
+  const handleAuthAction = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
@@ -48,23 +48,25 @@ const LoginRegister = () => {
       dispatch(login());
       toast.success(isLogin ? "Login Successful!" : "Account Created Successfully!");
       router.push("/");
-    } catch (err: any) {
+    } catch (err: unknown) {
       let errorMessage = "An unknown error occurred.";
-      switch (err.code) {
-        case "auth/user-not-found":
-        case "auth/wrong-password":
+
+      // Narrow unknown to Error safely
+      if (err instanceof Error) {
+        errorMessage = err.message;
+
+        // Optional: parse Firebase error codes from message
+        if (errorMessage.includes("auth/user-not-found") || errorMessage.includes("auth/wrong-password")) {
           errorMessage = "Invalid email or password. Please try again.";
-          break;
-        case "auth/email-already-in-use":
+        } else if (errorMessage.includes("auth/email-already-in-use")) {
           errorMessage = "This email is already registered. Please login.";
-          break;
-        case "auth/weak-password":
+        } else if (errorMessage.includes("auth/weak-password")) {
           errorMessage = "Password should be at least 6 characters.";
-          break;
-        default:
-          errorMessage = err.message;
+        }
       }
+
       toast.error(errorMessage);
+      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -105,7 +107,11 @@ const LoginRegister = () => {
               className="w-full p-3 pl-10 pr-10 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
               required
             />
-            <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+            >
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
           </div>

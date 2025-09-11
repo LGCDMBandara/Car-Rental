@@ -51,11 +51,15 @@ const Hero = () => {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="flex justify-center items-center mt-10 lg:mt-0 relative z-10"
             >
-                <Image
-                    src="/home/Hero.png"
-                    alt="car"
-                    className="w-[280px] sm:w-[400px] md:w-[500px] lg:w-[600px] drop-shadow-2xl"
-                />
+                <div className="relative w-[280px] sm:w-[400px] md:w-[500px] lg:w-[600px] h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] drop-shadow-2xl">
+                    <Image
+                        src="/home/Hero.png"
+                        alt="car"
+                        fill
+                        style={{ objectFit: "cover" }}
+                    />
+                </div>
+
             </motion.div>
         </div>
     );

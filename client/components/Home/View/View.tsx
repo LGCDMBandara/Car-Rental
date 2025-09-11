@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/store";
 import { fetchCars } from "../../../redux/slices/carsSlice";
+import Image from "next/image";
 
 const View = () => {
     const router = useRouter();
@@ -42,11 +43,15 @@ const View = () => {
                     {cars.map((item) => (
                         <SwiperSlide key={item.id} className="rounded-xl">
                             <div className="bg-white rounded-xl shadow-md overflow-hidden text-center p-3">
-                                <img
-                                    src={item.img}
-                                    alt={item.title}
-                                    className="w-full h-56 md:h-86 object-cover rounded-xl"
-                                />
+                                <div className="relative w-full h-56 md:h-86 rounded-xl overflow-hidden">
+                                    <Image
+                                        src={item.img}
+                                        alt={item.title}
+                                        fill
+                                        style={{ objectFit: "cover" }}
+                                    />
+                                </div>
+
                                 <div className="p-4">
                                     <h3 className="text-lg font-semibold text-gray-800">{item.title}</h3>
                                     <p className="text-sm text-center text-gray-500 mt-5">Starting at</p>
@@ -72,7 +77,15 @@ const View = () => {
                         key={item.id}
                         className="bg-white rounded-xl shadow-md overflow-hidden cursor-pointer text-center p-5 hover:bg-gray-200"
                     >
-                        <img src={item.img} alt={item.title} className="w-full h-50 object-cover" />
+                        <div className="relative w-full h-56 md:h-86 rounded-xl overflow-hidden">
+                            <Image
+                                src={item.img}
+                                alt={item.title}
+                                fill
+                                style={{ objectFit: "cover" }}
+                            />
+                        </div>
+
                         <h3 className="text-2xl font-semibold text-gray-800 text-left mt-5">{item.title}</h3>
                         <p className="text-lg text-left text-gray-500 mt-10">Starting at</p>
                         <div className="flex justify-between">
@@ -86,7 +99,7 @@ const View = () => {
                         </div>
                     </div>
                 ))}
-            </div>  
+            </div>
         </div>
     );
 };

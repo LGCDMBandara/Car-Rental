@@ -106,7 +106,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ carTitle, carPrice, carImg, o
 
   return (
     <ProtectedRoute>
-      <form onSubmit={handleSubmit} className="pt-8 px-5 md:px-20">
+      <form onSubmit={handleSubmit} className="px-5 pt-10 md:pt-30 md:px-20">
         <h1 className="text-center text-3xl md:text-5xl xl:text-6xl font-semibold text-black">Book Your Ride</h1>
         <div className="border-b-6 border-red-500 mt-3 lg:mt-5 rounded-full w-40 lg:w-80 mx-auto mb-10"></div>
 
