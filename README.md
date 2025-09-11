@@ -36,9 +36,9 @@
 ## Frontend — Pages & Routes
 - / → Home page (company intro, cars, Get Started, footer)  
 - /cars/[id] → Car details page with images, specs, and Book Now  
-- /booking → Booking form with validation and cost calculation  
-- /bookings → Protected booking history (only for logged-in users)  
-- /auth/login & /auth/register → Firebase authentication  
+- /form → Booking form with validation and cost calculation  
+- /booking → Protected booking history (only for logged-in users)  
+- /login → Firebase authentication with login page  
 
 ---
 
@@ -48,7 +48,7 @@
 
 Data Models:
 - Car: name, description, price per day, images, specifications, features  
-- Booking: user ID, car ID, pickup & return dates, duration, total cost  
+- Booking: username, vehicle type, pickup & return dates, nic, total amount, address, telephone number  
 - User: handled by Firebase Authentication  
 
 ---
@@ -57,7 +57,6 @@ Data Models:
 - User selects pickup and return dates.  
 - Duration in days is calculated.  
 - Total amount = duration × price per day.  
-- Validation ensures return date is later than pickup date.  
 
 ---
 
@@ -74,7 +73,7 @@ Data Models:
 ---
 
 ## Validation & Error Handling
-- Validate required fields, email format, phone number, and date ranges.  
+- Validate required fields, email format, phone number.  
 - User-friendly error messages shown for invalid inputs.  
 
 ---
@@ -99,6 +98,6 @@ Data Models:
 
 ---
 ## Submission Deliverables
-- GitHub repository link (code with README file )-  
-- Live deployed app link-    
+- GitHub repository link (code with README file ) -  
+- Live deployed app link -    
 - Example seed data (cars JSON or Firestore seed)
