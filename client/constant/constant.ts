@@ -1,7 +1,7 @@
 export const NavLinks = [
     { id: 1, url: '/', label: 'Home' },
     { id: 2, url: '/cars', label: 'Car Details' },
-    { id: 3, url: '/booking', label: 'Booking' },
+    { id: 3, url: '/booking', label: 'My Bookings' },
 ];
 
 export const CarList = [
@@ -195,9 +195,9 @@ export const CarList = [
         title: "Mercedes-Benz",
         img: "/home/Vehicle6.jpg",
         images: [
-            "/home/Vehicle1.jpg",
-            "/home/Vehicle1.jpg",
-            "/home/Vehicle1.jpg",
+            "/home/Vehicle06.jpg",
+            "/home/Vehicle006.jpg",
+            "/home/Vehicle0006.jpg",
         ],
         price: 99,
         description: "The pinnacle of automotive luxury. The S-Class sets the standard for first-class comfort, pioneering technology, and effortless performance. It’s more than a car; it's a statement.",

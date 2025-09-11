@@ -26,8 +26,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins.className} bg-gray-50`}>
         <ReduxProvider>
-          <Toaster position="top-right" reverseOrder={false} />
           <ResponsiveNav />
+          <Toaster position="top-right" reverseOrder={false} />
           {children}
           <Footer />
         </ReduxProvider>

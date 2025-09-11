@@ -59,51 +59,49 @@ const BookingView: React.FC = () => {
   }
 
   return (
-    <ProtectedRoute>
-      <div className="pt-16 px-4 sm:px-8 md:px-16 lg:px-20">
-        <h1 className="text-center text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
-          My Bookings
-        </h1>
-        <div className="border-b-4 border-red-500 mt-3 lg:mt-5 rounded-full w-32 sm:w-48 lg:w-64 mx-auto mb-10"></div>
+    <div className="pt-16 px-4 sm:px-8 md:px-16 lg:px-20">
+      <h1 className="text-center text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
+        My Bookings
+      </h1>
+      <div className="border-b-4 border-red-500 mt-3 lg:mt-5 rounded-full w-32 sm:w-48 lg:w-64 mx-auto mb-10"></div>
 
-        {bookings.length === 0 ? (
-          <p className="text-center text-gray-500 text-lg">
-            You don’t have any bookings yet.
-          </p>
-        ) : (
-          <div className="space-y-6">
-            {bookings.map((booking) => (
-              <div
-                key={booking._id}
-                className="bg-white rounded-2xl shadow-lg p-5 flex flex-col sm:flex-row items-center justify-between gap-5 hover:shadow-2xl transition-shadow duration-300"
-              >
-                <div className="w-48 h-32 sm:w-64 sm:h-40 relative overflow-hidden rounded-xl">
-                  <Image
-                    src={booking.carImg || "/booking/Car.png"}
-                    alt={booking.vehicleType || "Vehicle"}
-                    fill
-                    className="object-cover rounded-xl"
-                  />
-                </div>
-
-
-                <div className="sm:w-1/3 text-center sm:text-left">
-                  <h2 className="font-bold text-gray-700">
-                    Vehicle Type: {booking.vehicleType}
-                  </h2>
-                  <p className="text-gray-700">Total Amount: ${booking.totalAmount}</p>
-                </div>
-
-                <div className="sm:w-1/3 text-center sm:text-left">
-                  <p className="text-gray-700">Pickup: {booking.pickupDate}</p>
-                  <p className="text-gray-700">Return: {booking.returnDate}</p>
-                </div>
+      {bookings.length === 0 ? (
+        <p className="text-center text-gray-500 text-lg">
+          You don’t have any bookings yet.
+        </p>
+      ) : (
+        <div className="space-y-6">
+          {bookings.map((booking) => (
+            <div
+              key={booking._id}
+              className="bg-white rounded-2xl shadow-lg p-5 flex flex-col sm:flex-row items-center justify-between gap-5 hover:shadow-2xl transition-shadow duration-300"
+            >
+              <div className="w-48 h-32 sm:w-64 sm:h-40 relative overflow-hidden rounded-xl">
+                <Image
+                  src={booking.carImg || "/booking/Car.png"}
+                  alt={booking.vehicleType || "Vehicle"}
+                  fill
+                  className="object-cover rounded-xl"
+                />
               </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </ProtectedRoute>
+
+
+              <div className="sm:w-1/3 text-center sm:text-left">
+                <h2 className="font-bold text-gray-700">
+                  Vehicle Type: {booking.vehicleType}
+                </h2>
+                <p className="text-gray-700">Total Amount: ${booking.totalAmount}</p>
+              </div>
+
+              <div className="sm:w-1/3 text-center sm:text-left">
+                <p className="text-gray-700">Pickup: {booking.pickupDate}</p>
+                <p className="text-gray-700">Return: {booking.returnDate}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 
