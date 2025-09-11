@@ -77,14 +77,15 @@ const BookingView: React.FC = () => {
                 key={booking._id}
                 className="bg-white rounded-2xl shadow-lg p-5 flex flex-col sm:flex-row items-center justify-between gap-5 hover:shadow-2xl transition-shadow duration-300"
               >
-                <div className="w-48 h-32 sm:w-64 sm:h-40 overflow-hidden rounded-xl">
+                <div className="w-48 h-32 sm:w-64 sm:h-40 relative overflow-hidden rounded-xl">
                   <Image
-                      src={booking.carImg || "/booking/Car.png"}
-                      alt={booking.vehicleType || "Vehicle"}
-                      fill
-                      className="object-cover rounded-xl"
-                    />
+                    src={booking.carImg || "/booking/Car.png"}
+                    alt={booking.vehicleType || "Vehicle"}
+                    fill
+                    className="object-cover rounded-xl"
+                  />
                 </div>
+
 
                 <div className="sm:w-1/3 text-center sm:text-left">
                   <h2 className="font-bold text-gray-700">

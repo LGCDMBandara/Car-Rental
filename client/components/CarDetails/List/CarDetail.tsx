@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { RootState, AppDispatch } from "../../../redux/store";
 import { fetchCars } from "../../../redux/slices/carsSlice";
 import { LoaderPinwheel } from "lucide-react";
@@ -47,11 +48,14 @@ export default function CarDetail({ carId }: CarDetailProps) {
   if (!mounted || loading) {
     return (
       <div className="h-80% flex flex-col items-center justify-center bg-white">
-        <img
-          className="w-48 h-48"
-          src="/cars/Loading.gif"
-          alt="Loading Cars..."
-        />
+        <div className="w-48 h-48 relative">
+          <Image
+            src="/cars/Loading.gif"
+            alt="Loading Cars..."
+            fill
+            className="object-contain"
+          />
+        </div>
         <p className="mt-4 text-xl font-semibold text-gray-700">
           Loading Cars...
         </p>
@@ -62,7 +66,14 @@ export default function CarDetail({ carId }: CarDetailProps) {
   if (!car) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-white">
-        <img className="w-48 h-48" src="/cars/None.gif" alt="Car not found" />
+        <div className="w-48 h-48 relative">
+          <Image
+            src="/cars/None.gif"
+            alt="Car not found"
+            fill
+            className="object-contain"
+          />
+        </div>
         <p className="mt-4 text-xl font-semibold text-gray-700">
           Sorry, Car Not Found
         </p>
@@ -75,23 +86,25 @@ export default function CarDetail({ carId }: CarDetailProps) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
         <div>
           {selectedImage && (
-            <img
-              src={selectedImage}
-              alt={car.title}
-              className="w-full h-64 sm:h-80 lg:h-[400px] object-cover rounded-lg shadow-lg mb-4"
-            />
+            <div className="w-full h-64 sm:h-80 lg:h-[400px] relative mb-4">
+              <Image
+                src={selectedImage}
+                alt={car.title}
+                fill
+                className="object-cover rounded-lg shadow-lg"
+              />
+            </div>
           )}
           <div className="grid grid-cols-3 gap-2 sm:gap-4">
             {car.images.map((imgUrl, index) => (
-              <img
-                key={index}
-                src={imgUrl || "/cars/placeholder.jpg"}
-                alt={`${car.title} thumbnail ${index + 1}`}
-                className={`w-full h-24 sm:h-32 md:h-40 object-cover rounded-md cursor-pointer border-2 ${
-                  selectedImage === imgUrl ? "border-red-500" : "border-transparent"
-                }`}
-                onClick={() => setSelectedImage(imgUrl || "/cars/placeholder.jpg")}
-              />
+              <div key={index} className="w-full h-24 sm:h-32 md:h-40 relative cursor-pointer border-2 rounded-md overflow-hidden" onClick={() => setSelectedImage(imgUrl || "/cars/placeholder.jpg")}>
+                <Image
+                  src={imgUrl || "/cars/placeholder.jpg"}
+                  alt={`${car.title} thumbnail ${index + 1}`}
+                  fill
+                  className={`object-cover ${selectedImage === imgUrl ? "border-red-500" : "border-transparent"}`}
+                />
+              </div>
             ))}
           </div>
         </div>
