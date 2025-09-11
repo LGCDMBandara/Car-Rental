@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import ProtectedRoute from "../../ProtectedRoute/ProtectedRoute";
 import { auth } from "../../../utils/firebaseClient";
 import { onAuthStateChanged } from "firebase/auth";
+import Image from "next/image";
 
 interface Booking {
   _id: string;
@@ -77,11 +78,12 @@ const BookingView: React.FC = () => {
                 className="bg-white rounded-2xl shadow-lg p-5 flex flex-col sm:flex-row items-center justify-between gap-5 hover:shadow-2xl transition-shadow duration-300"
               >
                 <div className="w-48 h-32 sm:w-64 sm:h-40 overflow-hidden rounded-xl">
-                  <img
-                    src={booking.carImg || "/booking/Car.png"}
-                    alt={booking.vehicleType}
-                    className="w-full h-full object-cover rounded-xl"
-                  />
+                  <Image
+                      src={booking.carImg || "/booking/Car.png"}
+                      alt={booking.vehicleType || "Vehicle"}
+                      fill
+                      className="object-cover rounded-xl"
+                    />
                 </div>
 
                 <div className="sm:w-1/3 text-center sm:text-left">
