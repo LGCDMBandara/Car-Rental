@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const Hero = () => {
     const router = useRouter();
@@ -50,7 +51,7 @@ const Hero = () => {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="flex justify-center items-center mt-10 lg:mt-0 relative z-10"
             >
-                <img
+                <Image
                     src="/home/Hero.png"
                     alt="car"
                     className="w-[280px] sm:w-[400px] md:w-[500px] lg:w-[600px] drop-shadow-2xl"

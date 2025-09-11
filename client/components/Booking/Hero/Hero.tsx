@@ -1,9 +1,10 @@
 import React from 'react';
+import Image from "next/image";
 
 const Hero = () => {
     return (
         <div className="relative w-full h-120">
-            <img
+            <Image
                 src="/booking/Hero.jpg"
                 alt="Car Background"
                 className="w-full h-full object-cover"
