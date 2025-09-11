@@ -43,7 +43,7 @@ const View = () => {
                     {cars.map((item) => (
                         <SwiperSlide key={item.id} className="rounded-xl">
                             <div className="bg-white rounded-xl shadow-md overflow-hidden text-center p-3">
-                                <div className="relative w-full h-56 md:h-86 rounded-xl overflow-hidden">
+                                <div className="relative w-full h-56 rounded-xl overflow-hidden">
                                     <Image
                                         src={item.img}
                                         alt={item.title}
@@ -77,7 +77,7 @@ const View = () => {
                         key={item.id}
                         className="bg-white rounded-xl shadow-md overflow-hidden cursor-pointer text-center p-5 hover:bg-gray-200"
                     >
-                        <div className="relative w-full h-56 md:h-86 rounded-xl overflow-hidden">
+                        <div className="relative w-full h-56 rounded-xl overflow-hidden">
                             <Image
                                 src={item.img}
                                 alt={item.title}

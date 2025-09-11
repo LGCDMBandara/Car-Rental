@@ -72,7 +72,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ carTitle, carPrice, carImg, o
 
       const token = await user.getIdToken();
 
-      const res = await fetch("http://car-rental-backend-production-ceab.up.railway.app/api/bookings", {
+      const res = await fetch("https://car-rental-backend-production-ceab.up.railway.app/api/bookings", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
