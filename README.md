@@ -2,12 +2,12 @@
 ---
 
 ## Project Summary
-- *Home Page*: Company introduction, “Get Started” button, and car listings with images and prices.  
-- *Car Details Page: Detailed information with multiple images, specifications, features, and a **Book Now* button.  
-- *Booking Page*: Booking form with user details, pickup/return dates, automatic price calculation, and confirmation.  
-- *Bookings Page*: Protected page showing the logged-in user’s booking history.  
-- *Authentication: Handled entirely with **Firebase Authentication (Email/Password)*.  
-- *Footer*: Social media links (Facebook, Instagram, Twitter, LinkedIn).  
+- Home Page: Company introduction, “Get Started” button, and car listings with images and prices.  
+- Car Details Page: Detailed information with multiple images, specifications, features, and a **Book Now** button.  
+- Booking Page: Booking form with user details, pickup/return dates, automatic price calculation, and confirmation.  
+- Bookings Page: Protected page showing the logged-in user’s booking history.  
+- Authentication: Handled entirely with **Firebase Authentication (Email/Password).  
+- Footer: Social media links (Facebook, Instagram, Twitter, LinkedIn).  
 
 ---
 
@@ -25,10 +25,10 @@
 ---
 
 ## Tech Stack
-- *Frontend*: Next.js, TypeScript, Tailwind CSS, Redux Toolkit  
-- *Backend*: Node.js, Express, MongoDB  
-- *Authentication*: Firebase Authentication  
-- *Deployment*: Vercel(frontend), Railway(backend)  
+- Frontend: Next.js, TypeScript, Tailwind CSS, Redux Toolkit  
+- Backend: Node.js, Express, MongoDB  
+- Authentication: Firebase Authentication  
+- Deployment: Vercel(frontend), Railway(backend)  
 
 ---
 
@@ -43,33 +43,33 @@
 ---
 
 ## Backend — API Overview
-- *Cars*: List cars, get car details  
-- *Bookings*: Create booking, view user’s bookings  
+- Cars: List cars, get car details  
+- Bookings: Create booking, view user’s bookings  
 
-*Data Models*:
-- *Car*: name, description, price per day, images, specifications, features  
-- *Booking*: user ID, car ID, pickup & return dates, duration, total cost  
-- *User*: handled by Firebase Authentication  
+Data Models:
+- Car: name, description, price per day, images, specifications, features  
+- Booking: user ID, car ID, pickup & return dates, duration, total cost  
+- User: handled by Firebase Authentication  
 
 ---
 
 ## Booking Calculation Logic
 - User selects pickup and return dates.  
 - Duration in days is calculated.  
-- Total amount = *duration × price per day*.  
+- Total amount = duration × price per day.  
 - Validation ensures return date is later than pickup date.  
 
 ---
 
 ## Authentication
-- Only *Firebase Authentication* (Email/Password).  
+- Only Firebase Authentication (Email/Password).  
 - Protected routes check Firebase user status.  
 
 ---
 
 ## State Management (Redux Toolkit)
-- *authSlice* → Firebase user state  
-- *carsSlice* → Car listings and selected car details  
+- authSlice → Firebase user state  
+- carsSlice → Car listings and selected car details  
 
 ---
 
@@ -89,16 +89,16 @@
 
 ## Testing & Quality Checks  
 - API endpoint integration tests.  
-- Code linting and formatting with *ESLint*.  
+- Code linting and formatting with ESLint.  
 - Responsive UI testing across multiple devices.  
 
 ---
 
+## Special Note  
+- A .env file was not created during development because GitHub does not allow uploading files of that type. 
 
-
-## Submission Deliverables
-- GitHub repository link (code with README file ) -  
-- Live deployed app link -    
-- Example seed data (cars JSON or Firestore seed)
-  
 ---
+## Submission Deliverables
+- GitHub repository link (code with README file )-  
+- Live deployed app link-    
+- Example seed data (cars JSON or Firestore seed)
